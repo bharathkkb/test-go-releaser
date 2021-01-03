@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - master
+      - main
 name: release-please PR 
 jobs:
   release-please-pr:
