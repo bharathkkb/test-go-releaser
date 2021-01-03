@@ -21,5 +21,5 @@ jobs:
         echo $SEMVER_TAG
         git config user.name github-actions[bot]
         git config user.email github-actions[bot]@users.noreply.github.com
-        git tag -a $SEMVER_TAG
+        git tag -a $SEMVER_TAG -m "release $SEMVER_TAG"
         git push origin $SEMVER_TAG
