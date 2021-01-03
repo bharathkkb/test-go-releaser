@@ -1,0 +1,15 @@
+on:
+  push:
+    branches:
+      - master
+name: release-please PR 
+jobs:
+  release-please-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: GoogleCloudPlatform/release-please-action@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          bump-minor-pre-major: true
+          command: release-pr
+          release-type: simple
