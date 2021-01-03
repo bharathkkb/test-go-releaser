@@ -1,2 +1,2 @@
 # test-go-releaser
-test5
+test6
