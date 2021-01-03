@@ -1,1 +1,2 @@
 # test-go-releaser
+test
