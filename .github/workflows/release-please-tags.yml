@@ -3,7 +3,7 @@ on:
     branches:
       - 'main'
     types: [closed]
-name: tag release 
+name: tag and release 
 jobs:
   tag-release:
     if: github.event.pull_request.merged && startsWith( github.head_ref, 'release-' )
@@ -20,6 +20,29 @@ jobs:
         SEMVER_TAG=${BRANCH_NAME: -6}
         echo $SEMVER_TAG
         git config user.name github-actions[bot]
-        git config user.email github-actions[bot]@users.noreply.github.com
+        git config user.email github-actions@github.com
         git tag -a $SEMVER_TAG -m "release $SEMVER_TAG"
         git push origin $SEMVER_TAG
+        echo "SEMVER_TAG=${SEMVER_TAG}" >> $GITHUB_ENV
+  goreleaser:
+    name: build dist
+    needs: [tag-release]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ref: env.SEMVER_TAG
+      - name: Set up Go 1.15
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.15
+
+      - name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@master
+        with:
+          version: latest
+          args: release --rm-dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
