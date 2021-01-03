@@ -19,3 +19,5 @@ jobs:
         BRANCH_NAME=${{ github.head_ref }}
         SEMVER_TAG=${BRANCH_NAME: -6}
         echo $SEMVER_TAG
+        git tag -a $SEMVER_TAG
+        git push origin $SEMVER_TAG
