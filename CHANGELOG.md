@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.6.0](https://www.github.com/bharathkkb/test-go-releaser/compare/v0.5.0...v0.6.0) (2021-01-03)
+
+
+### Features
+
+* add msg ([1880008](https://www.github.com/bharathkkb/test-go-releaser/commit/1880008429def45547f6d4f70230aad6c6bbf082))
+* bar ([#16](https://www.github.com/bharathkkb/test-go-releaser/issues/16)) ([4810cf3](https://www.github.com/bharathkkb/test-go-releaser/commit/4810cf3bb40f2b8bd309567d9caf26da23f0eb73))
+
 ## [0.5.0](https://www.github.com/bharathkkb/test-go-releaser/compare/v0.4.0...v0.5.0) (2021-01-03)
 
 
