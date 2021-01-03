@@ -2,12 +2,11 @@ on:
   pull_request:
     branches:
       - 'main'
-    # types: [closed]
+    types: [closed]
 name: tag release 
 jobs:
   tag-release:
-    #if: github.event.pull_request.merged
-    if: startsWith( github.head_ref, 'release-' )
+    if: github.event.pull_request.merged && startsWith( github.head_ref, 'release-' )
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -16,7 +15,7 @@ jobs:
     - name: tag
       run: |-
         echo ${{ github.head_ref }}
-        # set -e
-        # BRANCH_NAME=${{ github.head_ref }}
-        # SEMVER_TAG=${BRANCH_NAME: -6}
-        # echo $SEMVER_TAG
+        set -e
+        BRANCH_NAME=${{ github.head_ref }}
+        SEMVER_TAG=${BRANCH_NAME: -6}
+        echo $SEMVER_TAG
